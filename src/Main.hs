@@ -1,14 +1,12 @@
-{-# LANGUAGE OverloadedStrings #-}
-module Main where
+module Main (main) where
 
-import System.Environment
-import Network.HTTP.Types (status200)
-import Network.Wai
 import Network.Wai.Handler.Warp (run)
+import Network.Wai.Dispatch (dispatch)
+import Application (on404)
+import Routes (routes)
 
-application _ = return $
-  responseLBS status200 [("Content-Type", "text/plain")] "Hello world.\n\nThis is Haskell on Heroku.\nhttps://github.com/pufuwozu/haskell-buildpack-demo"
-
+main :: IO ()
 main = do
-  port <- getEnv "PORT"
-  run (fromIntegral $ read port) application
+	let port = 3000
+	putStrLn $ "Listening on port " ++ show port
+	run port $ dispatch on404 routes

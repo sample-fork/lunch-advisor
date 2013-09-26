@@ -27,6 +27,7 @@ executable lunch-advisor
     wai,
     wai-util ==0.4.*,
     wai-dispatch,
+    wai-extra,
     yesod-routes,
     warp,
     text,

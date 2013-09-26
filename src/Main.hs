@@ -4,9 +4,11 @@ import Network.Wai.Handler.Warp (run)
 import Network.Wai.Dispatch (dispatch)
 import Application (on404)
 import Routes (routes)
+import Network.Wai.Middleware.RequestLogger (logStdoutDev)
+import System.Environment (getEnv)
 
 main :: IO ()
 main = do
-	let port = 3000
+	port <- fmap read $ getEnv "PORT"
 	putStrLn $ "Listening on port " ++ show port
-	run port $ dispatch on404 routes
+	run port $ logStdoutDev $ dispatch on404 routes

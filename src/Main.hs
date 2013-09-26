@@ -7,7 +7,7 @@ import Routes (routes)
 import Network.Wai.Middleware.RequestLogger (logStdoutDev)
 import System.Environment (getEnv)
 import Network.Wai.Middleware.Static (static)
-import import Database.PostgreSQL.Simple (connectPostgreSQL,close)
+import Database.PostgreSQL.Simple (connectPostgreSQL,close)
 
 main :: IO ()
 main = do

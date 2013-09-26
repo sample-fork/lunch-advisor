@@ -28,6 +28,8 @@ executable lunch-advisor
     wai-util ==0.4.*,
     wai-dispatch,
     wai-extra,
+    wai-middleware-static,
+    postgresql-simple,
     yesod-routes,
     warp,
     text,

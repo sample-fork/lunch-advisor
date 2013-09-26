@@ -15,5 +15,5 @@ main = do
 	dburl <- fmap read $ getEnv "DATABASE_URL"
 	conn <- connectPostgreSQL dburl
 	putStrLn $ "Listening on port " ++ show port
-	run port $ logStdoutDev $ static $ dispatch on404 routes
+	run port $ logStdoutDev $ static $ dispatch on404 (routes conn)
 	close conn

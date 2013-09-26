@@ -11,7 +11,7 @@ dist/setup-config: lunch-advisor.cabal
 	cabal configure
 
 src/Routes.hs: src/routes
-	~/.cabal/bin/routeGenerator -r -m Application $< > $@
+	~/.cabal/bin/routeGenerator -r -n 1 -m Application $< > $@
 
 src/MustacheTemplates.hs: src/Records.hs src/homePage.html.mustache
 	mustache2hs -m src/Records.hs src/homePage.html.mustache HomePageData > $@

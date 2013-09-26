@@ -24,6 +24,12 @@ htmlEscape = concatMap escChar
 	escChar c   = [c]
 
 homePage :: Application
-homePage _ = textBuilder status200
+homePage conn _ = textBuilder status200
 	(stringHeaders' [("Content-Type", "text/html; charset=utf-8")])
 	(srcHomePagehtml htmlEscape $ HomePageData "Welcome to Lunch Advisor!" (Just "Ryan"))
+
+instance FromRow Place where
+	fromRow = Place <$> field <*> field
+
+instance ToRow Place where
+	toRow p = toRow (name p, address p)

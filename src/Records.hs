@@ -15,8 +15,8 @@ data Restaurant = Restaurant {
 	address :: String -- maybe better type out there
 }
 
-instance FromRow Place where
+instance FromRow Restaurant where
 	fromRow = Place <$> field <*> field
 
-instance ToRow Place where
+instance ToRow Restaurant where
 	toRow p = toRow (name p, address p)

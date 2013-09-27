@@ -16,7 +16,7 @@ data Restaurant = Restaurant {
 }
 
 instance FromRow Restaurant where
-	fromRow = Place <$> field <*> field
+	fromRow = Restaurant <$> field <*> field
 
 instance ToRow Restaurant where
 	toRow p = toRow (name p, address p)

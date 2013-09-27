@@ -7,10 +7,10 @@ import Database.PostgreSQL.Simple.ToRow (ToRow,toRow)
 import Control.Applicative ((<$>),(<*>))
 
 data HomePageData = HomePageData {
-	places :: [Place]
+	places :: [Restaurant]
 }
 
-data Place = Place {
+data Restaurant = Restaurant {
 	name :: String,
 	address :: String -- maybe better type out there
 }

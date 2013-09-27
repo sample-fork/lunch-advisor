@@ -13,8 +13,8 @@ dist/setup-config: lunch-advisor.cabal
 src/Routes.hs: src/routes
 	~/.cabal/bin/routeGenerator -r -n 1 -m Application $< > $@
 
-src/MustacheTemplates.hs: src/Records.hs src/homePage.html.mustache
-	mustache2hs -m src/Records.hs src/homePage.html.mustache HomePageData > $@
+src/MustacheTemplates.hs: src/Records.hs src/home.mustache src/place.mustache
+	mustache2hs -m src/Records.hs src/home.mustache HomePageData > $@
 
 .PHONY: clean
 

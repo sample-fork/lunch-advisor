@@ -1,15 +1,17 @@
 module Application where
 
 import Network.Wai
-import Network.Wai.Util (string,stringHeaders',textBuilder)
+import Network.Wai.Util (string,stringHeaders',textBuilder,noStoreFileUploads)
+import Network.Wai.Parse (parseRequestBody)
 import Network.HTTP.Types (status200,notFound404)
 import Records
 import MustacheTemplates
-
---import Network.Wai (Request(..), Response(..), Application)
---import Control.Monad.IO.Class (liftIO)
---import Network.HTTP.Types.Header (hContentType)
---import qualified Data.ByteString.UTF8 as BU
+--import Database.SQLite.Simple (query_)
+--import Database.SQLite.Simple.Internal (Connection)
+import Database.PostgreSQL.Simple (query_)
+import Database.PostgreSQL.Simple.Internal (Connection)
+import Control.Monad.IO.Class (liftIO)
+import Data.String (fromString)
 
 on404 :: Application
 on404 _ = string notFound404 [] "Not Found"
@@ -23,13 +25,24 @@ htmlEscape = concatMap escChar
 	escChar '>' = "&gt;"
 	escChar c   = [c]
 
-homePage :: Application
-homePage conn _ = textBuilder status200
-	(stringHeaders' [("Content-Type", "text/html; charset=utf-8")])
-	(srcHomePagehtml htmlEscape $ HomePageData "Welcome to Lunch Advisor!" (Just "Ryan"))
+{-
+getParams :: Request -> [Params]
+getParams req = do
+	(params,_) <- parseRequestBody noStoreFileUploads req
+	params
+-}
 
-instance FromRow Place where
-	fromRow = Place <$> field <*> field
+homePage :: Connection -> Application
+homePage conn _ = liftIO $ do
+	places <- query_ conn (fromString "select * from places") :: IO [Place]
+	textBuilder status200
+		(stringHeaders' [("Content-Type", "text/html; charset=utf-8")])
+		(srcHome htmlEscape $ HomePageData places)
 
-instance ToRow Place where
-	toRow p = toRow (name p, address p)
+{-
+newPlace :: Connection -> Application
+newPlace conn req = do
+	obj <- from query string
+	execute conn (fromString "insert into places values (?)") obj
+	homePage conn req
+-}

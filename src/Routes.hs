@@ -7,10 +7,10 @@ import Data.Text (pack)
 import Web.PathPieces (fromPathPiece, fromPathMultiPiece)
 import Yesod.Routes.Dispatch (Route(..), Piece(Static, Dynamic))
 
-routes  = [
+routes arg1 = [
 		Route {
 			rhPieces = [Static (pack "GET")],
 			rhHasMulti = False,
-			rhDispatch = (\(_:_) -> return (homePage ))
+			rhDispatch = (\(_:_) -> return (homePage arg1))
 		}
 	]

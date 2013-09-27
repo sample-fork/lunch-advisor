@@ -30,10 +30,12 @@ executable lunch-advisor
     wai-extra,
     wai-middleware-static,
     postgresql-simple,
+    --sqlite-simple,
     yesod-routes,
     warp,
     text,
     path-pieces,
+    transformers,
     text-format
 
 source-repository head

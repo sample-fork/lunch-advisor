@@ -8,7 +8,8 @@ import Control.Applicative ((<$>),(<*>))
 import Data.Text
 
 data HomePageData = HomePageData {
-	places :: [Restaurant]
+	choices :: [Restaurant],
+	suggestion :: [Restaurant]
 }
 
 data Restaurant = Restaurant {

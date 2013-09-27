@@ -12,5 +12,10 @@ routes arg1 = [
 			rhPieces = [Static (pack "GET")],
 			rhHasMulti = False,
 			rhDispatch = (\(_:_) -> return (homePage arg1))
+		},
+		Route {
+			rhPieces = [Static (pack "GET"),Static (pack "choose")],
+			rhHasMulti = False,
+			rhDispatch = (\(_:_:_) -> return (choicePage arg1))
 		}
 	]

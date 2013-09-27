@@ -33,16 +33,24 @@ getParams req = do
 -}
 
 homePage :: Connection -> Application
-homePage conn _ = liftIO $ do
-	places <- query_ conn (fromString "select * from restaurants") :: IO [Restaurant]
+homePage conn req = liftIO $ do
+	restaurants <- query_ conn (fromString "select * from restaurants") :: IO [Restaurant]
 	textBuilder status200
 		(stringHeaders' [("Content-Type", "text/html; charset=utf-8")])
-		(srcHome htmlEscape $ HomePageData places)
+		(srcHome htmlEscape $ HomePageData restaurants [])
+
+choicePage :: Connection -> Application
+choicePage conn req = liftIO $ do
+	restaurants <- query_ conn (fromString "select * from restaurants") :: IO [Restaurant]
+	let choice = if null restaurants then [] else [head restaurants]
+	textBuilder status200
+		(stringHeaders' [("Content-Type", "text/html; charset=utf-8")])
+		(srcHome htmlEscape $ HomePageData restaurants choice)
 
 {-
 newPlace :: Connection -> Application
 newPlace conn req = do
 	obj <- from query string
-	execute conn (fromString "insert into places values (?)") obj
+	execute conn (fromString "insert into restaurants values (?)") obj
 	homePage conn req
 -}

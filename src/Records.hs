@@ -11,8 +11,8 @@ data HomePageData = HomePageData {
 }
 
 data Restaurant = Restaurant {
-	name :: String,
-	address :: String -- maybe better type out there
+	name :: Text,
+	address :: Text -- maybe better type out there
 }
 
 instance FromRow Restaurant where

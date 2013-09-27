@@ -5,6 +5,7 @@ module Records where
 import Database.PostgreSQL.Simple.FromRow (FromRow,fromRow,field)
 import Database.PostgreSQL.Simple.ToRow (ToRow,toRow)
 import Control.Applicative ((<$>),(<*>))
+import Data.Text
 
 data HomePageData = HomePageData {
 	places :: [Restaurant]

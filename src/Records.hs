@@ -1,7 +1,9 @@
 module Records where
 
-import Database.SQLite.Simple.FromRow (FromRow,fromRow,field)
-import Database.SQLite.Simple.ToRow (ToRow,toRow)
+--import Database.SQLite.Simple.FromRow (FromRow,fromRow,field)
+--import Database.SQLite.Simple.ToRow (ToRow,toRow)
+import Database.PostgreSQL.Simple.FromRow (FromRow,fromRow,field)
+import Database.PostgreSQL.Simple.ToRow (ToRow,toRow)
 import Control.Applicative ((<$>),(<*>))
 
 data HomePageData = HomePageData {

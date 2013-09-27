@@ -12,12 +12,13 @@ data HomePageData = HomePageData {
 }
 
 data Restaurant = Restaurant {
-	name :: String,
-	address :: String -- maybe better type out there
+	balls :: Integer,
+	name :: Text,
+	address :: Text -- maybe better type out there
 }
 
 instance FromRow Restaurant where
-	fromRow = Restaurant <$> field <*> field
+	fromRow = Restaurant <$> field <*> field <*> field
 
 instance ToRow Restaurant where
 	toRow p = toRow (name p, address p)

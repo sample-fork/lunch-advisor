@@ -9,6 +9,7 @@ import System.Environment (getEnv)
 import Network.Wai.Middleware.Static (static)
 import Database.PostgreSQL.Simple (connectPostgreSQL,close)
 --import Database.SQLite.Simple (open,close)
+import Data.String (fromString)
 
 main :: IO ()
 main = do

@@ -34,7 +34,7 @@ getParams req = do
 
 homePage :: Connection -> Application
 homePage conn _ = liftIO $ do
-	places <- query_ conn (fromString "select * from restaurants") :: IO [Restaurant]
+	places <- query_ conn (fromString "select (name,address) from restaurants") :: IO [Restaurant]
 	textBuilder status200
 		(stringHeaders' [("Content-Type", "text/html; charset=utf-8")])
 		(srcHome htmlEscape $ HomePageData places)

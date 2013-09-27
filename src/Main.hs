@@ -13,8 +13,8 @@ import Database.PostgreSQL.Simple (connectPostgreSQL,close)
 main :: IO ()
 main = do
 	port <- fmap read $ getEnv "PORT"
-	dburl <- fmap read $ getEnv "DATABASE_URL"
-	conn <- connectPostgreSQL dburl
+	dburl <- getEnv "DATABASE_URL"
+	conn <- connectPostgreSQL $ fromString dburl
 	--conn <- open "./developement.sqlite3"
 	putStrLn $ "Listening on port " ++ show port
 	run port $ logStdoutDev $ static $ dispatch on404 (routes conn)

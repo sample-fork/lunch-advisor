@@ -24,7 +24,7 @@ srcHome escapeFunction ctx@(HomePageData {places=places}) = mconcat [
 		build "\n\t\t\t(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\n\t\t\tm=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\n\t\t\t})(window,document,'script','//www.google-analytics.com/analytics.js','ga');\n\n\t\t\tga('create', 'UA-44349803-1', 'lunch-advisor.herokuapp.com');\n\t\t\tga('send', 'pageview');\n\t\t</script>\n    </body>\n</html>\n"
 	]
 	where
-	places0 escapeFunction ctx@(Place {name=name, address=address}) = mconcat [
+	places0 escapeFunction ctx@(Restaurant {name=name, address=address}) = mconcat [
 			{-# LINE 10 "src/home.mustache" #-}
 			build "\t\t\t",
 			{-# LINE 10 "src/home.mustache" #-}
@@ -33,7 +33,7 @@ srcHome escapeFunction ctx@(HomePageData {places=places}) = mconcat [
 			build "\n\t\t"
 		]
 
-srcPlace escapeFunction ctx@(Place {name=name, address=address}) = mconcat [
+srcPlace escapeFunction ctx@(Restaurant {name=name, address=address}) = mconcat [
 		{-# LINE 1 "src/place.mustache" #-}
 		build "<dt>",
 		{-# LINE 1 "src/place.mustache" #-}

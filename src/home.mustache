@@ -1,18 +1,16 @@
 <html>
     <head>
-        <title>{{title}}</title>
+        <title>Lunch Advisor</title>
     </head>
     <body>
-        <h1>{{title}}</h1>
+        <h1>Welcome to Lunch Advisor!</h1>
 
-        {{#username}}
-            Welcome, {{username}}!
-        {{/username}}
+		<dl>
+		{{#places}}
+			{{> place.mustache}}
+		{{/places}}
+		</dl>
 
-		<p>
-			I had to use an external network card tethered to my phone in the
-			middle of class so that you could see this. I hope you're happy.
-		</p>
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

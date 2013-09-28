@@ -35,15 +35,15 @@ srcHome escapeFunction ctx@(HomePageData {choices=choices, suggestion=suggestion
 
 srcChoice escapeFunction ctx@(Restaurant {balls=balls, name=name, address=address}) = mconcat [
 		{-# LINE 1 "src/choice.mustache" #-}
-		build "<div>\n\t",
+		build "<div>\n\t<p>",
 		{-# LINE 2 "src/choice.mustache" #-}
 		build $ escapeFunction $ TL.unpack $ TL.toLazyText $ build name,
 		{-# LINE 2 "src/choice.mustache" #-}
-		build "\n\t",
+		build "<p>\n\t<p>",
 		{-# LINE 3 "src/choice.mustache" #-}
 		build $ escapeFunction $ TL.unpack $ TL.toLazyText $ build address,
 		{-# LINE 3 "src/choice.mustache" #-}
-		build "\n</div>\n"
+		build "<p>\n</div>\n"
 	]
 
 

@@ -36,7 +36,10 @@ executable lunch-advisor
     text,
     path-pieces,
     transformers,
-    text-format
+    text-format,
+    random-extras,
+    random-source,
+    random-fu
 
 source-repository head
   type: git

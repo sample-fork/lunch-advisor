@@ -16,6 +16,6 @@ routes arg1 = [
 		Route {
 			rhPieces = [Static (pack "GET"),Static (pack "choose")],
 			rhHasMulti = False,
-			rhDispatch = (\(_:_:_) -> return (choicePage arg1))
+			rhDispatch = (\(_:_:_) -> return (choose arg1))
 		}
 	]

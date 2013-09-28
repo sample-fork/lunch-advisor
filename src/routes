@@ -1,2 +1,2 @@
 GET / => homePage
-GET /choose => choicePage
+GET /choose => choose

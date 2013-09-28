@@ -12,6 +12,10 @@ import Database.PostgreSQL.Simple (query_)
 import Database.PostgreSQL.Simple.Internal (Connection)
 import Control.Monad.IO.Class (liftIO)
 import Data.String (fromString)
+import Data.Maybe (maybeToList)
+import Data.Random.Extras (safeChoice)
+import Data.Random.RVar (runRVar)
+import Data.Random.Source.DevRandom
 
 on404 :: Application
 on404 _ = string notFound404 [] "Not Found"
@@ -39,10 +43,10 @@ homePage conn req = liftIO $ do
 		(stringHeaders' [("Content-Type", "text/html; charset=utf-8")])
 		(srcHome htmlEscape $ HomePageData restaurants [])
 
-choicePage :: Connection -> Application
-choicePage conn req = liftIO $ do
+choose :: Connection -> Application
+choose conn req = liftIO $ do
 	restaurants <- query_ conn (fromString "select * from restaurants") :: IO [Restaurant]
-	let choice = if null restaurants then [] else [head restaurants]
+	choice <- mapM (flip runRVar DevURandom) $ maybeToList $ safeChoice restaurants
 	textBuilder status200
 		(stringHeaders' [("Content-Type", "text/html; charset=utf-8")])
 		(srcHome htmlEscape $ HomePageData restaurants choice)

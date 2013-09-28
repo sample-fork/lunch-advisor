@@ -13,7 +13,7 @@ srcHome escapeFunction ctx@(HomePageData {choices=choices, suggestion=suggestion
 		{-# LINE 8 "src/home.mustache" #-}
 		mconcat $ map (suggestion0 escapeFunction) suggestion,
 		{-# LINE 11 "src/home.mustache" #-}
-		build "\n\t\t<a href=\"/?spin=true\"><img src=\"http://www.weentertainseniors.com/photos/753.jpg\" /></a>\n\n\t\t<script>\n\t\t\t(function(i,s,o,g,r,a,m)",
+		build "\n\t\t<div><a href=\"/choose\"><img src=\"http://www.weentertainseniors.com/photos/753.jpg\" /></a></div>\n\n\t\t<script>\n\t\t\t(function(i,s,o,g,r,a,m)",
 		{-# LINE 15 "src/home.mustache" #-}
 		build "{",
 		{-# LINE 15 "src/home.mustache" #-}
@@ -28,20 +28,22 @@ srcHome escapeFunction ctx@(HomePageData {choices=choices, suggestion=suggestion
 			{-# LINE 9 "src/home.mustache" #-}
 			build "\t\t\t",
 			{-# LINE 9 "src/home.mustache" #-}
-			srcPlace escapeFunction ctx,
+			srcChoice escapeFunction ctx,
 			{-# LINE 9 "src/home.mustache" #-}
 			build "\n\t\t"
 		]
 
-srcPlace escapeFunction ctx@(Restaurant {balls=balls, name=name, address=address}) = mconcat [
-		{-# LINE 1 "src/place.mustache" #-}
+srcChoice escapeFunction ctx@(Restaurant {balls=balls, name=name, address=address}) = mconcat [
+		{-# LINE 1 "src/choice.mustache" #-}
+		build "<div>\n\t",
+		{-# LINE 2 "src/choice.mustache" #-}
 		build $ escapeFunction $ TL.unpack $ TL.toLazyText $ build name,
-		{-# LINE 1 "src/place.mustache" #-}
-		build "\n",
-		{-# LINE 2 "src/place.mustache" #-}
+		{-# LINE 2 "src/choice.mustache" #-}
+		build "\n\t",
+		{-# LINE 3 "src/choice.mustache" #-}
 		build $ escapeFunction $ TL.unpack $ TL.toLazyText $ build address,
-		{-# LINE 2 "src/place.mustache" #-}
-		build "\n"
+		{-# LINE 3 "src/choice.mustache" #-}
+		build "\n</div>\n"
 	]
 
 

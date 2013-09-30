@@ -15,7 +15,7 @@ import Data.String (fromString)
 import Data.Maybe (maybeToList)
 import Data.Random.Extras (safeChoice)
 import Data.Random.RVar (runRVar)
-import Data.Random.Source.DevRandom
+import Data.Random (StdRandom(StdRandom))
 
 on404 :: Application
 on404 _ = string notFound404 [] "Not Found"
@@ -46,7 +46,7 @@ homePage conn req = liftIO $ do
 choose :: Connection -> Application
 choose conn req = liftIO $ do
 	restaurants <- query_ conn (fromString "select * from restaurants") :: IO [Restaurant]
-	choice <- mapM (flip runRVar DevURandom) $ maybeToList $ safeChoice restaurants
+	choice <- mapM (flip runRVar StdRandom) $ maybeToList $ safeChoice restaurants
 	textBuilder status200
 		(stringHeaders' [("Content-Type", "text/html; charset=utf-8")])
 		(srcHome htmlEscape $ HomePageData restaurants choice)

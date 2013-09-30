@@ -30,16 +30,15 @@ executable lunch-advisor
     wai-extra,
     wai-middleware-static,
     postgresql-simple,
-    --sqlite-simple,
     yesod-routes,
     warp,
     text,
+    random-fu,
+    random-extras,
     path-pieces,
     transformers,
-    text-format,
-    random-extras,
-    random-source,
-    random-fu
+    simple-form,
+    text-format
 
 source-repository head
   type: git

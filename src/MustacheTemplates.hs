@@ -13,7 +13,7 @@ srcHome escapeFunction ctx@(HomePageData {choices=choices, suggestion=suggestion
 		{-# LINE 8 "src/home.mustache" #-}
 		mconcat $ map (suggestion0 escapeFunction) suggestion,
 		{-# LINE 11 "src/home.mustache" #-}
-		build "\n\t\t<button><a href=\"/choose\">Random Selection</a></button>\n\n\t\t<script>\n\t\t\t(function(i,s,o,g,r,a,m)",
+		build "\n\t\t<a href=\"/choose\"><button>Random Selection</button></a>\n\n\t\t<script>\n\t\t\t(function(i,s,o,g,r,a,m)",
 		{-# LINE 15 "src/home.mustache" #-}
 		build "{",
 		{-# LINE 15 "src/home.mustache" #-}
